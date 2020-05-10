@@ -71,14 +71,13 @@ public class Movement : MonoBehaviour
         }
         transform.localScale = characterScale;
     }
-        private void jump()
-    {
-        if(Input.GetButtonDown("Jump") && isGrounded == true)
-        {
+        private void jump(){
+        
+            if(Input.GetButtonDown("Jump") && isGrounded == true){
 
-            rb2d.AddForce(new Vector2(0f,jumpForce), ForceMode2D.Impulse);
+             rb2d.AddForce(new Vector2(0f,jumpForce), ForceMode2D.Impulse);
 
+            }
         }
-    }
     }
  

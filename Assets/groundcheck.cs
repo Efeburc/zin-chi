@@ -22,7 +22,7 @@ public class groundcheck : MonoBehaviour
     {
         if (collision.collider.tag == "Ground")
         {
-            player.GetComponent<Movement>().isGrounded = true;
+            player.GetComponent<TestMovement>().isGrounded = true;
             Animator.SetBool("grounded", true);
         }
 
@@ -32,7 +32,7 @@ public class groundcheck : MonoBehaviour
     {
         if (collision.collider.tag == "Ground")
         {
-            player.GetComponent<Movement>().isGrounded = false;
+            player.GetComponent<TestMovement>().isGrounded = false;
             Animator.SetBool("grounded", false);
         }
 
