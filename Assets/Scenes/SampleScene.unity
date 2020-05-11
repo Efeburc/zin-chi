@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 101528002}
   - component: {fileID: 101528001}
   - component: {fileID: 101528003}
+  - component: {fileID: 101528004}
   m_Layer: 9
   m_Name: ground check
   m_TagString: Untagged
@@ -212,6 +213,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &101528004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101527999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 756c5732b2265e54387478df1c611ce7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 483729873}
 --- !u!1 &483729868
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,9 +241,10 @@ GameObject:
   - component: {fileID: 483729873}
   - component: {fileID: 483729874}
   - component: {fileID: 483729875}
-  - component: {fileID: 483729877}
   - component: {fileID: 483729876}
   - component: {fileID: 483729878}
+  - component: {fileID: 483729879}
+  - component: {fileID: 483729877}
   m_Layer: 9
   m_Name: player
   m_TagString: Player
@@ -427,7 +442,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 483729868}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04ed42589579da3448fc694cbecc5ff3, type: 3}
   m_Name: 
@@ -457,6 +472,23 @@ MonoBehaviour:
   Animator: {fileID: 483729873}
   maxEnemyHealth: 100
   CurrentHealth: 0
+--- !u!114 &483729879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483729868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdb1288aa059a62488779be3894d2bf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 483729868}
+  xspeed: 15
+  jumpForce: 7
+  ani: {fileID: 483729873}
+  isGrounded: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
