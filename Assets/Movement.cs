@@ -93,7 +93,8 @@ public class Movement : MonoBehaviour
             if (Input.GetButtonDown("Jump") && jumpcounter <= 1)
             {
                 jumpcounter++;
-                rb2d.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+                //rb2d.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+                rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce); //düşerken aşağı doğru olan momentumu umursamasın diye
             }
         }
         else if (isGrounded == true)
@@ -114,15 +115,19 @@ public class Movement : MonoBehaviour
             if (Input.GetAxis("Horizontal") < 0)
             {
                 rb2d.velocity = Vector2.left * DashSpeed;
+                rb2d.gravityScale = 0;
                 //rb2d.AddForce(new Vector2(-DashSpeed, 0f), ForceMode2D.Impulse);
                 isDashing = true;
+                Animator.SetBool("isDashing", true);
                 DashTime = StartDashTime;
             }
             else if (Input.GetAxis("Horizontal") > 0)
             {
                 rb2d.velocity = Vector2.right * DashSpeed;
+                rb2d.gravityScale = 0;  
                 //rb2d.AddForce(new Vector2(DashSpeed, 0f), ForceMode2D.Impulse);
                 isDashing = true;
+                Animator.SetBool("isDashing", true);
                 DashTime = StartDashTime;
             }
 
@@ -137,6 +142,8 @@ public class Movement : MonoBehaviour
         {
             rb2d.velocity = Vector2.zero;
             isDashing = false;
+            Animator.SetBool("isDashing", false);
+            rb2d.gravityScale = 1;
         }
     }
 }
