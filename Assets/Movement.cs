@@ -17,6 +17,7 @@ public class Movement : MonoBehaviour
     string buttonPressed;
     public float jumpForce;
     public bool isGrounded = false;
+    int jumpcounter;
 
     //Dash variables
     public float DashSpeed;
@@ -32,14 +33,12 @@ public class Movement : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         DashTime = StartDashTime;
+        jumpcounter = 0;
     }
     void Update()
     {
         dash();
-        if (Input.GetButtonDown("Jump"))
-        {
-            jump();
-        }
+        jump();
         if (Input.GetKey(KeyCode.D))
         {
             buttonPressed = RIGHT;
@@ -52,8 +51,6 @@ public class Movement : MonoBehaviour
         {
             buttonPressed = null;
         }
-
-
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -85,63 +82,64 @@ public class Movement : MonoBehaviour
         }
         transform.localScale = characterScale;
     }
-<<<<<<< HEAD
-        private void jump(){
-        
-            if(Input.GetButtonDown("Jump") && isGrounded == true){
-
-             rb2d.AddForce(new Vector2(0f,jumpForce), ForceMode2D.Impulse);
-=======
     private void jump()
     {
-        if (Input.GetButtonDown("Jump") && isGrounded == true)
+        if (isGrounded == false)
         {
-
-            rb2d.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
->>>>>>> master
-
+            if (jumpcounter == 0)
+            {
+                jumpcounter = 1;
+            } // sorgulama kardeşim niye
+            if (Input.GetButtonDown("Jump") && jumpcounter <= 1)
+            {
+                jumpcounter++;
+                rb2d.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            }
+        }
+        else if (isGrounded == true)
+        {
+            jumpcounter = 0;
+            if (Input.GetButtonDown("Jump") && jumpcounter < 1)
+            {
+                jumpcounter++;
+                rb2d.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
             }
         }
     }
-<<<<<<< HEAD
-=======
     //my own galaxy brain dash script it took me 5 hours to write bruh
     private void dash()
     {
-        if(Input.GetButtonDown("Dash"))
+        if (Input.GetButtonDown("Dash"))
+        {
+            if (Input.GetAxis("Horizontal") < 0)
             {
-                if (Input.GetAxis("Horizontal") < 0)
-                {
-                    rb2d.velocity = Vector2.left * DashSpeed;
-                    //rb2d.AddForce(new Vector2(-DashSpeed, 0f), ForceMode2D.Impulse);
-                    isDashing = true;
-                    DashTime = StartDashTime;
-                }
-                else if (Input.GetAxis("Horizontal") > 0)
-                {
-                    rb2d.velocity = Vector2.right * DashSpeed;
-                    //rb2d.AddForce(new Vector2(DashSpeed, 0f), ForceMode2D.Impulse);
-                    isDashing = true;
-                    DashTime = StartDashTime;
-                }
+                rb2d.velocity = Vector2.left * DashSpeed;
+                //rb2d.AddForce(new Vector2(-DashSpeed, 0f), ForceMode2D.Impulse);
+                isDashing = true;
+                DashTime = StartDashTime;
+            }
+            else if (Input.GetAxis("Horizontal") > 0)
+            {
+                rb2d.velocity = Vector2.right * DashSpeed;
+                //rb2d.AddForce(new Vector2(DashSpeed, 0f), ForceMode2D.Impulse);
+                isDashing = true;
+                DashTime = StartDashTime;
+            }
 
-            
+
             else
                 isDashing = false;
 
 
         }
         DashTime -= Time.deltaTime;
-        if(DashTime <= 0 && isDashing == true)
+        if (DashTime <= 0 && isDashing == true)
         {
             rb2d.velocity = Vector2.zero;
             isDashing = false;
         }
-
     }
 }
 
 
-    
->>>>>>> master
- 
+

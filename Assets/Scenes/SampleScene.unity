@@ -437,7 +437,8 @@ MonoBehaviour:
   Animator: {fileID: 483729873}
   jumpForce: 7
   isGrounded: 0
-  DashSpeed: 80
+  jumpcounter: 0
+  DashSpeed: 60
   StartDashTime: 0.1
   isDashing: 0
 --- !u!114 &483729878
@@ -893,6 +894,7 @@ MonoBehaviour:
   Animator: {fileID: 1500484835}
   jumpForce: 7
   isGrounded: 0
+  jumpcounter: 0
   DashSpeed: 0
   StartDashTime: 0
   isDashing: 0
