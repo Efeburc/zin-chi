@@ -10,6 +10,20 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    [SerializeField]
+
+    private float jumpforce = 5f;
+
+    [SerializeField]
+
+    private float gravityScale = 1f;
+
+    [SerializeField]
+
+    private float jumpTimer = 0.5f;
+
+
+
     public Rigidbody2D rb2d;
     public Vector3 movement;
     public GameObject player;
@@ -25,10 +39,18 @@ public class Movement : MonoBehaviour
     //Dash variables
 
     //Jump variables
+
+
+    private bool pressedjump = false;
+    private Rigidbody2D rb;
+    private bool releasedjump = false;
+    private bool startTimer = false;
+    private float timer;
     private byte jumpCounter = 0;
     public bool isGrounded = false;
     public bool isTouchingWalls;
     //Jump variables
+
 
     void Start()
     {
@@ -88,7 +110,7 @@ public class Movement : MonoBehaviour
         if (isTouchingWalls == true && jumpCounter == 0)
         {
             jumpCounter++;
-        }     
+        }
         if (Input.GetButtonDown("Jump") && jumpCounter > 0)
         {
             rb2d.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
@@ -116,7 +138,8 @@ public class Movement : MonoBehaviour
                 isDashing = true;
                 //Animator.SetBool("isDashing", true);
                 DashTime = StartDashTime;
-            }else
+            }
+            else
                 isDashing = false;
         }
         DashTime -= Time.deltaTime;
@@ -127,5 +150,84 @@ public class Movement : MonoBehaviour
             Animator.SetBool("isDashing", false);
             rb2d.gravityScale = 1;
         }
+        void awake()
+        {
+            rb = GetComponent<Rigidbody2D>();
+            timer = jumpTimer;
+        }
+        void update()
+
+        {
+
+            if (Input.GetButtonDown("jump"))
+            {
+
+                pressedjump = true;
+
+            }
+            if (Input.GetButtonUp("jump"))
+            {
+                releasedjump = true;
+
+
+            }
+            if (startTimer)
+            {
+
+                timer -= Time.deltaTime;
+
+                if (timer <= 0)
+                {
+
+                }
+                releasedjump = true;
+
+
+
+                void fixedupdate()
+
+                {
+                    if (pressedjump)
+                    {
+
+                        startjump();
+                    }
+                    if (releasedjump)
+                    {
+                        stopjump();
+                    }
+                }
+                void startjump()
+                {
+                    rb.gravityScale = 0;
+                    rb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
+
+                    pressedjump = false;
+                    startTimer = true;
+                }
+                void stopjump()
+
+                {
+                    rb.gravityScale = gravityScale;
+                    releasedjump = false;
+                    timer = jumpTimer;
+                    startTimer = false;
+
+                }
+            }
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
