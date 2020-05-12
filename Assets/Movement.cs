@@ -16,6 +16,8 @@ public class Movement : MonoBehaviour
     public const string UP = "up";
     string buttonPressed;
     public float jumpForce;
+    public float walkSpeed;
+    public float sprintSpeed;
     public bool isGrounded = false;
     int jumpcounter;
 
@@ -26,11 +28,15 @@ public class Movement : MonoBehaviour
     public bool isDashing;
     //private string direction;
     //Dash variables
+    // Use this for initialization
+    
 
-
-    // Start is called before the first frame update
-    void Start()
+   // Start is called before the first frame update
+        void Start()
     {
+        walkSpeed = 4f;
+        sprintSpeed = 8f;
+
         rb2d = GetComponent<Rigidbody2D>();
         DashTime = StartDashTime;
         jumpcounter = 0;
@@ -39,6 +45,7 @@ public class Movement : MonoBehaviour
     {
         dash();
         jump();
+		sprint();
         if (Input.GetKey(KeyCode.D))
         {
             buttonPressed = RIGHT;
@@ -146,7 +153,54 @@ public class Movement : MonoBehaviour
             rb2d.gravityScale = 1;
         }
     }
-}
+
+    private void sprint()
+    {
+
+        //Sprinting
+
+        if (Input.GetKey(KeyCode.E))
+
+        {
+
+            walkSpeed = sprintSpeed;
+        }
+        else
+        {
+
+            walkSpeed = 4f;
+
+        }
+        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
+        transform.position += movement * Time.deltaTime * walkSpeed;
+        Animator.SetFloat("velocity", Mathf.Abs(moveSpeed));
+
+        if (buttonPressed==null)
+		{
+
+          Animator.SetFloat("velocity", 0);
+        }
+        }
+  }  
+
+
+
+
+      
+
+        
+
+
+
+
+
+
+
+
+
+	
+
+
 
 
 
