@@ -514,12 +514,20 @@ MonoBehaviour:
   moveSpeed: 5
   Animator: {fileID: 483729873}
   jumpForce: 7
+<<<<<<< Updated upstream
   walkSpeed: 0
   sprintSpeed: 0
   isGrounded: 0
   jumpcounter: 0
   DashSpeed: 0
   StartDashTime: 0
+=======
+  walkSpeed: 4
+  sprintSpeed: 8
+  isGrounded: 0
+  DashSpeed: 60
+  StartDashTime: 0.1
+>>>>>>> Stashed changes
   isDashing: 0
   isTouchingWalls: 0
 --- !u!114 &483729878
@@ -1076,7 +1084,6 @@ MonoBehaviour:
   walkSpeed: 0
   sprintSpeed: 0
   isGrounded: 0
-  jumpcounter: 0
   DashSpeed: 0
   StartDashTime: 0
   isDashing: 0
@@ -1126,7 +1133,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!95 &1500484835
 Animator:
