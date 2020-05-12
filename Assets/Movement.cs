@@ -7,8 +7,9 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    Rigidbody2D rb2d;
+    public Rigidbody2D rb2d;
     public GameObject player;
+    public GameObject wallcheckl;
     public float moveSpeed = 5f;
     public Animator Animator;
     public const string RIGHT = "right";
@@ -19,7 +20,7 @@ public class Movement : MonoBehaviour
     public float walkSpeed;
     public float sprintSpeed;
     public bool isGrounded = false;
-    int jumpcounter;
+    public int jumpcounter;
 
     //Dash variables
     public float DashSpeed;
@@ -28,11 +29,14 @@ public class Movement : MonoBehaviour
     public bool isDashing;
     //private string direction;
     //Dash variables
-    // Use this for initialization
-    
 
-   // Start is called before the first frame update
-        void Start()
+
+    //walljump variables
+    public bool isTouchingWalls;
+
+
+    // Start is called before the first frame update
+    void Start()
     {
         walkSpeed = 4f;
         sprintSpeed = 8f;
@@ -113,6 +117,20 @@ public class Movement : MonoBehaviour
                 rb2d.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
             }
         }
+        if(isTouchingWalls == true && isGrounded == false)
+        {
+            if(jumpcounter <= 2)
+            {
+            if(Input.GetButtonDown("Jump"))
+            {
+                    jumpcounter++;
+                    //rb2d.velocity = new Vector2(rb2d.velocity.x, jumpForce);
+                }
+                
+            }
+
+
+        }
     }
     //my own galaxy brain dash script it took me 5 hours to write bruh
     private void dash()
@@ -125,7 +143,7 @@ public class Movement : MonoBehaviour
                 rb2d.gravityScale = 0;
                 //rb2d.AddForce(new Vector2(-DashSpeed, 0f), ForceMode2D.Impulse);
                 isDashing = true;
-                Animator.SetBool("isDashing", true);
+                //Animator.SetBool("isDashing", true);
                 DashTime = StartDashTime;
             }
             else if (Input.GetAxis("Horizontal") > 0)
@@ -134,7 +152,7 @@ public class Movement : MonoBehaviour
                 rb2d.gravityScale = 0;  
                 //rb2d.AddForce(new Vector2(DashSpeed, 0f), ForceMode2D.Impulse);
                 isDashing = true;
-                Animator.SetBool("isDashing", true);
+                //Animator.SetBool("isDashing", true);
                 DashTime = StartDashTime;
             }
 
