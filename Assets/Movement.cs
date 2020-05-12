@@ -38,8 +38,8 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        walkSpeed = 4f;
-        sprintSpeed = 8f;
+        walkSpeed = 10f;
+        sprintSpeed = 16f;
 
         rb2d = GetComponent<Rigidbody2D>();
         DashTime = StartDashTime;
@@ -70,7 +70,7 @@ public class Movement : MonoBehaviour
         if (buttonPressed == RIGHT || buttonPressed == LEFT)
         {
             Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
-            transform.position += movement * Time.deltaTime * moveSpeed;
+            transform.position += movement * Time.deltaTime * walkSpeed;
             Animator.SetFloat("velocity", Mathf.Abs(moveSpeed));
 
         }
@@ -186,12 +186,12 @@ public class Movement : MonoBehaviour
         else
         {
 
-            walkSpeed = 4f;
+            walkSpeed = 10f;
 
         }
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
-        transform.position += movement * Time.deltaTime * walkSpeed;
-        Animator.SetFloat("velocity", Mathf.Abs(moveSpeed));
+       // Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
+       // transform.position += movement * Time.deltaTime * walkSpeed;
+        //Animator.SetFloat("velocity", Mathf.Abs(moveSpeed));
 
         if (buttonPressed==null)
 		{
@@ -200,25 +200,6 @@ public class Movement : MonoBehaviour
         }
         }
   }  
-
-
-
-
-      
-
-        
-
-
-
-
-
-
-
-
-
-	
-
-
 
 
 

@@ -38,7 +38,7 @@ public class wallcheck : MonoBehaviour
         {
             player.GetComponent<Movement>().isTouchingWalls = false;
             //Animator.SetBool("grounded", false);
-            player.GetComponent<Movement>().rb2d.velocity = initialVelocity.y;
+           // player.GetComponent<Movement>().rb2d.velocity = initialVelocity.y;
         }
 
     }
