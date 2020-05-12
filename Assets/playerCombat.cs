@@ -9,14 +9,23 @@ public class playerCombat : MonoBehaviour
     public float attackRange = 0.5f; //attack range duh
     public LayerMask enemylayers;
     public int attackDamage = 10;
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Attack();
 
+
+    // Combo variables
+    public float ComboTime; // Combo Time Delta
+    public bool isCombo; // Combo Bool
+    // Update is called once per frame
+    void Start()
+    {
+    }
+    void Update()
+    {   
+        ComboAttack();
+        if (ComboTime < 0)
+        {
+            ComboTime = 0;
         }
+        else ComboTime -= Time.deltaTime;
     }
     void Attack()
     {
@@ -40,5 +49,34 @@ public class playerCombat : MonoBehaviour
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
 
     }
+    void ComboAttack()
+    {
+        if (Input.GetButtonDown("Fire1") && ComboTime <= 0.40f)
+        {
 
+            ComboTime = 1f;
+            isCombo = true;
+            Attack();
+            Debug.Log("Attack");
+        }
+        else if (Input.GetButtonDown("Fire1") && (ComboTime >= 0.40f && ComboTime <= 1.00f))
+        {
+            isCombo = true;
+            ComboTime += 1f;
+            Attack();
+            Debug.Log("Second Attack");
+        }
+        else if (Input.GetButtonDown("Fire1") && ComboTime >= 1.00f)
+        {
+            isCombo = true;
+            Attack();
+            Debug.Log("Third Attack");
+            ComboTime = 0f;
+        }
+        else if (ComboTime <= 0 && isCombo == true)
+        {
+            isCombo = false;
+            //Animator.SetBool("isCombo", false);
+        }
+    }
 }
