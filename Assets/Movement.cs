@@ -25,7 +25,8 @@ public class Movement : MonoBehaviour
     //Dash variables
 
     //Jump variables
-    private byte jumpCounter = 0;
+    public byte walljumpcounter = 1;
+    public byte jumpCounter = 0;
     public bool isGrounded = false;
     public bool isTouchingWalls;
     //Jump variables
@@ -33,6 +34,8 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        DashSpeed = 50f;
+        StartDashTime = 0.1f;
     }
     // Update is called once per frame
     void Update()
@@ -83,11 +86,8 @@ public class Movement : MonoBehaviour
     {
         if (isGrounded == true)
         {
-            jumpCounter = 2;
-        }
-        if (isTouchingWalls == true && jumpCounter == 0)
-        {
-            jumpCounter++;
+            jumpCounter = 1;
+            walljumpcounter = 1;
         }     
         if (Input.GetButtonDown("Jump") && jumpCounter > 0)
         {
