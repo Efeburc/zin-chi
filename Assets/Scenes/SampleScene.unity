@@ -151,7 +151,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 483729872}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &72844956
 MonoBehaviour:
@@ -253,7 +253,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.08555287, y: 0.035392225}
+  m_Offset: {x: 0.08555287, y: 0.0073182583}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -264,7 +264,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.51876533, y: 0.0324651}
+  m_Size: {x: 0.51876533, y: 0.08861303}
   m_EdgeRadius: 0
 --- !u!95 &101528003
 Animator:
@@ -404,8 +404,8 @@ Transform:
   m_LocalPosition: {x: -12.93, y: 6.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 72844955}
   - {fileID: 996488491}
+  - {fileID: 72844955}
   - {fileID: 101528000}
   - {fileID: 1353983340}
   m_Father: {fileID: 0}
@@ -508,10 +508,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04ed42589579da3448fc694cbecc5ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb2d: {fileID: 0}
+  rb2d: {fileID: 483729874}
   player: {fileID: 483729868}
-  wallcheckl: {fileID: 0}
-  moveSpeed: 5
+  wallcheckl: {fileID: 72844954}
+  moveSpeed: 15
   Animator: {fileID: 483729873}
   jumpForce: 7
   walkSpeed: 0
@@ -715,11 +715,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 996488490}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.018, y: -0.441, z: -4}
+  m_LocalPosition: {x: 0.017999649, y: -0.44099998, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 483729872}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &996488492
 MonoBehaviour:
@@ -1067,7 +1067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04ed42589579da3448fc694cbecc5ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb2d: {fileID: 0}
+  rb2d: {fileID: 1500484834}
   player: {fileID: 1500484830}
   wallcheckl: {fileID: 0}
   moveSpeed: 5
@@ -1126,7 +1126,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!95 &1500484835
 Animator:
@@ -1491,7 +1491,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.00069020595}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1502,7 +1502,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 0.04}
+  m_Size: {x: 2, y: 0.047169976}
   m_EdgeRadius: 0
 --- !u!212 &1831275058
 SpriteRenderer:

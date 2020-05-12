@@ -124,7 +124,7 @@ public class Movement : MonoBehaviour
         {
             rb2d.velocity = Vector2.zero;
             isDashing = false;
-            Animator.SetBool("isDashing", false);
+            //Animator.SetBool("isDashing", false);  
             rb2d.gravityScale = 1;
         }
     }
