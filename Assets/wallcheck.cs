@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class wallcheck : MonoBehaviour
 {
-    GameObject player;
+    public GameObject player;
     public Animator Animator;
-    public float initialVelocityx;
-    public float initialVelocityy;
+    public static float initialVelocityx;
+    public static float initialVelocityy;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,9 +25,6 @@ public class wallcheck : MonoBehaviour
         if (collision.collider.tag == "Walls")
         {
             player.GetComponent<Movement>().isTouchingWalls = true;
-            initialVelocityx = player.GetComponent<Movement>().rb2d.velocity.x;
-            initialVelocityy = player.GetComponent<Movement>().rb2d.velocity.y;
-
             //Animator.SetBool("grounded", true);
         }
 
