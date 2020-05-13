@@ -15,6 +15,11 @@ public class playerCombat : MonoBehaviour
     public float ComboTime; // Combo Time Delta
     public bool isCombo; // Combo Bool
     // Update is called once per frame
+
+    // Attack rate ayarı
+    public float attackRate = 20f;
+    float nextAttackTime = 0f;
+
     void Start()
     {
     }
@@ -25,8 +30,13 @@ public class playerCombat : MonoBehaviour
         {
             ComboTime = 0;
         }
-        else ComboTime -= Time.deltaTime;
-    }
+        else 
+        {
+            ComboTime -= Time.deltaTime;
+        }
+        
+        
+}
     void Attack()
     {
       ///attack animation
@@ -56,20 +66,32 @@ public class playerCombat : MonoBehaviour
 
             ComboTime = 1f;
             isCombo = true;
+            if (Time.time >= nextAttackTime)
+            {
             Attack();
+            nextAttackTime =Time.time + 0.5f;
+            }
             Debug.Log("Attack");
         }
         else if (Input.GetButtonDown("Fire1") && (ComboTime >= 0.40f && ComboTime <= 1.00f))
         {
             isCombo = true;
             ComboTime += 1f;
+            if (Time.time >= nextAttackTime)
+            {
             Attack();
+            nextAttackTime =Time.time + 0.1f;
+             }
             Debug.Log("Second Attack");
         }
         else if (Input.GetButtonDown("Fire1") && ComboTime >= 1.00f)
         {
             isCombo = true;
+            if (Time.time >= nextAttackTime)
+            {
             Attack();
+            nextAttackTime =Time.time + 0.1f;
+            }
             Debug.Log("Third Attack");
             ComboTime = 0f;
         }
